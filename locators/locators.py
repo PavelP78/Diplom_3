@@ -38,6 +38,7 @@ class StellarBurgersLocators:
     ORDER_FEED_BUTTON = (By.XPATH, '//p[text()="Лента Заказов"]/parent::a')  # Кнопка "Лента заказов"
     CLOSE_POP_UP_BUTTON = By.XPATH, '//button[contains(@class,"close")]'  # закрытие всплывающего окна деталей ингредиента
     METER_INGREDIENT = (By.XPATH, '//ul[1]/a[1]//p[contains(@class, "num")]')  # Счетчик ингредиентов
+    ORDER_BASKET_UP = (By.XPATH, "//span[@class='constructor-element__text' and text()='Перетяните булочку сюда (верх)']") # Счетчик ингредиентов
 
 # class StellarBurgersLocatorsMainPage:
 #     MAIN_ENTER_BUTTON = (By.XPATH, '//button[text()="Войти в аккаунт"]') # Кнопка войти в аккаунт на главной

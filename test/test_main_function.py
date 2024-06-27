@@ -36,6 +36,10 @@ class TestStellarBurgersMainFunction:
                   ' счётчик этого ингридиента увеличивается')
     def test_add_ingredient_to_basket(self, driver):
         pages = StellarBurgersMainFunctionPage(driver)
-        pages.click_bun_picture()
-        pages.click_close_pop_up_ingredient_button()
-        assert pages.is_filling_button_visible() is True
+        meter_value = pages.get_meter_value()
+        pages.add_filling_to_order()
+        actual_value = pages.get_meter_value()
+        assert actual_value > meter_value
+
+
+        

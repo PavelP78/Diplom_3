@@ -1,7 +1,7 @@
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import ActionChains
 
 
 class StellarBurgerBasePage:
@@ -17,6 +17,10 @@ class StellarBurgerBasePage:
 
     def get_text(self, locator):
         return self.find_element(*locator).text
+    
+    def get_actually_text(self, locator):
+        actually_text = self.driver.find_element(*locator).text
+        return actually_text
 
     def set_text(self, locator, text):
         WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(locator))
@@ -57,3 +61,10 @@ class StellarBurgerBasePage:
             return True
         except NoSuchElementException:
             return False
+        
+    def drag_and_drop_element(self, locator_1, locator_2):
+        drag = self.driver.find_element(*locator_1)
+        drop = self.driver.find_element(*locator_2)
+        action_chains = ActionChains(self.driver)
+        action_chains.drag_and_drop(drag, drop).perform()
+    

@@ -8,7 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class StellarBurgersMainFunctionPage(StellarBurgerBasePage):
     def __init__(self, driver):
-        super().__init__(driver)
+       # super().__init__(driver)
         self.driver = driver
 
     @allure.step(f"Клик по кнопке Лента Заказов")
@@ -54,11 +54,13 @@ class StellarBurgersMainFunctionPage(StellarBurgerBasePage):
 
     @allure.step(f"видимость кнопки Начинки")
     def is_filling_button_visible(self):
-        return self.get_text(Locators.METER_INGREDIENT)
+        return self.get_actually_text(Locators.FILLING_BUTTON)
 
     @allure.step(f"значение счетчика ингредиентов")
     def get_meter_value(self):
-        return self.check_element_is_visibility(Locators.FILLING_BUTTON)
+        return self.get_actually_text(Locators.METER_INGREDIENT)
 
-
+    @allure.step('Добавить ингридиент в заказ')
+    def add_filling_to_order(self):
+        self.drag_and_drop_element(Locators.ROLLS_PICTURE, Locators.ORDER_BASKET_UP)
 

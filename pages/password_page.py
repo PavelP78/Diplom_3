@@ -7,7 +7,7 @@ import allure
 class StellarBurgersPasswordPage(StellarBurgerBasePage):
 
     def __init__(self, driver):
-        super().__init__(driver)
+       # super().__init__(driver)
         self.driver = driver
 
     @allure.step(f"Клик по кнопке Личный кабинет")
