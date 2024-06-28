@@ -16,7 +16,7 @@ class StellarBurgerBasePage:
         self.find_element(locator).click()
 
     def get_text(self, locator):
-        return self.find_element(*locator).text
+        return self.find_element(locator).text
     
     def get_actually_text(self, locator):
         actually_text = self.driver.find_element(*locator).text
@@ -47,7 +47,7 @@ class StellarBurgerBasePage:
     def is_button_clickable(self, locator):
 
         try:
-            button = self.find_element(locator)
+            button = self.driver.find_element(*locator)
             if button.is_enabled() and button.is_displayed():
                 return True
             else:

@@ -1,6 +1,7 @@
 from data import StellarBurgersUrl as Url
 import allure
 from pages.main_function_page import StellarBurgersMainFunctionPage
+import time
 
 
 class TestStellarBurgersMainFunction:
@@ -30,7 +31,7 @@ class TestStellarBurgersMainFunction:
         pages = StellarBurgersMainFunctionPage(driver)
         pages.click_bun_picture()
         pages.click_close_pop_up_ingredient_button()
-        assert pages.is_filling_button_visible() is True
+        assert pages.filling_button_is_active() is True
 
     @allure.title('Проверка: при добавлении ингредиента в заказ'
                   ' счётчик этого ингридиента увеличивается')
@@ -41,5 +42,15 @@ class TestStellarBurgersMainFunction:
         actual_value = pages.get_meter_value()
         assert actual_value > meter_value
 
-
-        
+    @allure.title('Проверка: залогиненный пользователь может оформить заказ')
+    def test_make_order_authorized_user(self, driver):
+        pages = StellarBurgersMainFunctionPage(driver)
+        pages.click_main_enter_button()
+        pages.send_keys_to_placeholder_email()
+        pages.send_keys_to_placeholder_password()
+        pages.click_enter_button()
+        time.sleep(3)
+        pages.add_filling_to_order()
+        pages.click_order_button()
+        details_text = pages.get_order_text()
+        assert details_text == "Ваш заказ начали готовить"

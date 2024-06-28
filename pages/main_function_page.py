@@ -2,13 +2,11 @@ from locators.locators import StellarBurgersLocators as Locators
 from pages.base_page import StellarBurgerBasePage
 from data import StellarBurgersLogin as Login
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class StellarBurgersMainFunctionPage(StellarBurgerBasePage):
     def __init__(self, driver):
-       # super().__init__(driver)
+        super().__init__(driver)
         self.driver = driver
 
     @allure.step(f"Клик по кнопке Лента Заказов")
@@ -36,13 +34,9 @@ class StellarBurgersMainFunctionPage(StellarBurgerBasePage):
     def click_close_pop_up_ingredient_button(self):
         self.click_to_element(Locators.CLOSE_POP_UP_BUTTON)
 
-    # @allure.step('Проверить скрытость деталей ингредиентов')
-    # def invisibility_ingredient_details(self):
-    #     self.element_is_visible(Locators.ROLLS_SELECT)
-
     @allure.step('Проверить скрытость деталей ингредиентов')
     def check_ingredient_details_invisibility(self):
-        return  self.element_is_visible(Locators.ROLLS_SELECT)
+        return self.element_is_visible(Locators.ROLLS_SELECT)
 
     @allure.step(f"Клик по кнопке Начинки")
     def click_filling_button(self):
@@ -50,7 +44,7 @@ class StellarBurgersMainFunctionPage(StellarBurgerBasePage):
 
     @allure.step(f"видимость кнопки Начинки")
     def filling_button_is_active(self):
-        return self.is_button_clickable(Locators.FILLING_BUTTON)
+        return self.check_element_is_visibility(Locators.FILLING_BUTTON)
 
     @allure.step(f"видимость кнопки Начинки")
     def is_filling_button_visible(self):
@@ -64,3 +58,25 @@ class StellarBurgersMainFunctionPage(StellarBurgerBasePage):
     def add_filling_to_order(self):
         self.drag_and_drop_element(Locators.ROLLS_PICTURE, Locators.ORDER_BASKET_UP)
 
+    @allure.step(f"Заполнение формы email: {Login.MY_LOGIN}")
+    def send_keys_to_placeholder_email(self):
+        placeholder_name = self.driver.find_element(*Locators.EMAIL_FIELD)
+        placeholder_name.send_keys(*Login.MY_LOGIN)
+
+    @allure.step(f"Заполнение формы Пароль: {Login.MY_PASSWORD}")
+    def send_keys_to_placeholder_password(self):
+        placeholder_password = self.driver.find_element(*Locators.PASSWORD_FIELD)
+        placeholder_password.send_keys(*Login.MY_PASSWORD)
+
+    @allure.step(f"Клик по кнопке Войти")
+    def click_enter_button(self):
+        self.click_to_element(Locators.ENTER_BUTTON)
+
+    @allure.step(f"Клик по кнопке Оформить заказ")
+    def click_order_button(self):
+        self.click_to_element(Locators.ORDER_BUTTON)
+
+    @allure.step("Получение текста Ваш заказ начали готовить")
+    def get_order_text(self):
+        order_text = self.get_text(Locators.ORDER_TEXT)
+        return order_text

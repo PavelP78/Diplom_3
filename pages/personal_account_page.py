@@ -2,12 +2,11 @@ from locators.locators import StellarBurgersLocators as Locators
 from pages.base_page import StellarBurgerBasePage
 from data import StellarBurgersLogin as Login
 import allure
-from selenium.webdriver.support.wait import WebDriverWait
 
 
 class StellarBurgersPersonalAccountPage(StellarBurgerBasePage):
     def __init__(self, driver):
-       # super().__init__(driver)
+        super().__init__(driver)
         self.driver = driver
 
     @allure.step(f"Клик по кнопке Личный кабинет")
@@ -39,4 +38,3 @@ class StellarBurgersPersonalAccountPage(StellarBurgerBasePage):
     @allure.step(f"Клик по кнопке Выход")
     def click_exit_button(self):
         self.click_to_element(Locators.EXIT_BUTTON)
-
