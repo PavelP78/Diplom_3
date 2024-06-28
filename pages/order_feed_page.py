@@ -44,16 +44,13 @@ class StellarBurgersOrderFeedPage(StellarBurgerBasePage):
     def click_order_history_button(self):
         self.click_to_element(Locators.ORDER_HISTORY_BUTTON)
 
-
     @allure.step(f"значение Номер заказа(последний в списке) пользователя в разделе История заказов")
     def get_order_user_number_first_in_order_history(self):
         return self.get_actually_text(Locators.ORDER_USER_NUMBER_LAST_IN_ORDER_HISTORY)
 
-
     @allure.step(f"Клик по кнопке Лента заказов")
     def click_order_feed_button(self):
         self.click_to_element(Locators.ORDER_FEED_BUTTON)
-
 
     @allure.step(f"Закрытие всплывающего окна созданного заказа")
     def click_close_pop_up_order_button(self):
@@ -82,4 +79,3 @@ class StellarBurgersOrderFeedPage(StellarBurgerBasePage):
     @allure.step(f"значение счетчика заказа в разделе В работе")
     def get_value_order_meter_in_progress_field(self):
         return self.get_actually_text(Locators.ORDER_IN_PROGRESS)
-

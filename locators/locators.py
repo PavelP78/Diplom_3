@@ -5,7 +5,7 @@ class StellarBurgersLocators:
 
     PASSWORD_FIELD = (By.XPATH, '//label[text()="Пароль"]/following::input[1]')  # Поле пароль
     EMAIL_FIELD = (By.XPATH, '//label[text()="Email"]/following::input[1]')  # Поле е-майл
-    PERSONAL_ACCOUNT_BUTTON = (By.XPATH, "//nav/a[@class='AppHeader_header__link__3D_hX']")  # Кнопка личный кабинет авторизиованного пользователя
+    PERSONAL_ACCOUNT_BUTTON = (By.XPATH, ".//p[text()='Личный Кабинет']")  # Кнопка личный кабинет авторизиованного пользователя
     ENTER_BUTTON = (By.XPATH, '//button[text()="Войти"]')  # Кнопка войти
     MAIN_ENTER_BUTTON = (By.XPATH, '//button[text()="Войти в аккаунт"]')  # Кнопка войти в аккаунт на главной
     ENTER_BUTTON_REGISTRATION_FORM = (By.XPATH, '//a[text()="Войти"]')  # Кнопка войти  в форме регистрации
@@ -51,5 +51,3 @@ class StellarBurgersLocators:
     ORDER_READY_NUMBER_SECOND = (By.XPATH, '(//li[contains(@class, "text text_type_digits-default")])[2]')  # Номер готового заказа(второй в списке)
     ORDER_IN_PROGRESS = (By.XPATH, '(//li[contains(@class, "text text_type_digits-default mb-2")])[6][1]')  # Номер заказа в работе(первый в списке)
     CLOSE_POP_UP_ORDER_BUTTON = (By.XPATH, '//button[@class="Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK"]')  # Кнопка закрыть - всплывающее окно созданного заказа
-
-

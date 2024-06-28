@@ -1,7 +1,6 @@
 from data import StellarBurgersUrl as Url
 import allure
 from pages.main_function_page import StellarBurgersMainFunctionPage
-import time
 
 
 class TestStellarBurgersMainFunction:
@@ -49,7 +48,6 @@ class TestStellarBurgersMainFunction:
         pages.send_keys_to_placeholder_email()
         pages.send_keys_to_placeholder_password()
         pages.click_enter_button()
-        time.sleep(3)
         pages.add_filling_to_order()
         pages.click_order_button()
         details_text = pages.get_order_text()
