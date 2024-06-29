@@ -1,6 +1,5 @@
 from locators.locators import StellarBurgersLocators as Locators
 from pages.base_page import StellarBurgerBasePage
-from data import StellarBurgersLogin as Login
 import allure
 
 
@@ -13,15 +12,15 @@ class StellarBurgersPersonalAccountPage(StellarBurgerBasePage):
     def click_main_enter_button(self):
         self.click_to_element(Locators.MAIN_ENTER_BUTTON)
 
-    @allure.step(f"Заполнение формы email: {Login.MY_LOGIN}")
-    def send_keys_to_placeholder_email(self):
+    @allure.step(f"Заполнение формы email")
+    def send_keys_to_placeholder_email(self, api):
         placeholder_name = self.driver.find_element(*Locators.EMAIL_FIELD)
-        placeholder_name.send_keys(*Login.MY_LOGIN)
+        placeholder_name.send_keys(api.get_login())
 
-    @allure.step(f"Заполнение формы Пароль: {Login.MY_PASSWORD}")
-    def send_keys_to_placeholder_password(self):
+    @allure.step(f"Заполнение формы Пароль")
+    def send_keys_to_placeholder_password(self, api):
         placeholder_password = self.driver.find_element(*Locators.PASSWORD_FIELD)
-        placeholder_password.send_keys(*Login.MY_PASSWORD)
+        placeholder_password.send_keys(api.get_password())
 
     @allure.step(f"Клик по кнопке Войти")
     def click_enter_button(self):

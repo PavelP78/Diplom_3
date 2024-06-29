@@ -1,9 +1,10 @@
-import faker
+from faker import Faker
 
 
-def get_sign_up_data():
-    fake = faker.Faker()
-    name = fake.name()
-    email = fake.email()
-    password = fake.password()
-    return name, email, password
+def sign_up_data(self):
+    fake = Faker()
+    self.MY_LOGIN = fake.email()
+    self.MY_PASSWORD = fake.password()
+    self.MY_NAME = fake.name()
+    user_data = {"email": self.MY_LOGIN, "password": self.MY_PASSWORD, "name": self.MY_NAME}
+    return user_data

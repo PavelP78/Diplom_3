@@ -10,8 +10,16 @@ class StellarBurgersUrl:
     URL_ORDER_FEED = f'{URL_MAIN}feed'
 
 
-
 class StellarBurgersLogin:
+
+
 
     MY_LOGIN = 'pavel_pliasunov_8_888@yandex.ru'
     MY_PASSWORD = '12345678'
+
+
+class EndPoint:
+
+    verification_user = "/api/auth/login"  # POST запрос авторизация пользователя
+    registration_user = "/api/auth/register"  # POST запрос регистрация пользователя
+    delete_user = "/api/auth/user"  # DELETE запрос удаление пользователя

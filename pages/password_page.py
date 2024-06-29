@@ -18,10 +18,10 @@ class StellarBurgersPasswordPage(StellarBurgerBasePage):
     def click_recovery_password_button(self):
         self.click_to_element(Locators.BUTTON_PASSWORD_RECOVERY_FORM)
 
-    @allure.step(f"Заполнение формы email: {Login.MY_LOGIN}")
-    def send_keys_to_placeholder_email(self):
-        placeholder_name = self.driver.find_element(*Locators.EMAIL_FIELD_RECOVERY_PASSWORD)
-        placeholder_name.send_keys(*Login.MY_LOGIN)
+    @allure.step(f"Заполнение формы email")
+    def send_keys_to_placeholder_email(self, api):
+        placeholder_name = self.driver.find_element(*Locators.EMAIL_FIELD)
+        placeholder_name.send_keys(api.get_login())
 
     @allure.step(f"Клик по кнопке Восстановить")
     def click_recovery_button(self):
