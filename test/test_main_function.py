@@ -1,7 +1,6 @@
 from data import StellarBurgersUrl as Url
 import allure
 from pages.main_function_page import StellarBurgersMainFunctionPage
-from api_page import StellarBurgersAPI
 
 
 class TestStellarBurgersMainFunction:
@@ -43,20 +42,9 @@ class TestStellarBurgersMainFunction:
         assert actual_value > meter_value
 
     @allure.title('Проверка: залогиненный пользователь может оформить заказ')
-    def test_make_order_authorized_user(self, driver):
-        stellar_burgers_api = StellarBurgersAPI()
-        sign_up_data = stellar_burgers_api.sign_up_data
-        new_user_response = stellar_burgers_api.create_new_user(sign_up_data)
-        access_token = stellar_burgers_api.get_access_token(new_user_response)
-        assert new_user_response.status_code == 200, "Новый пользователь не создан"
+    def test_make_order_authorized_user(self, enter_and_delete_user, driver):
         pages = StellarBurgersMainFunctionPage(driver)
-        pages.click_main_enter_button()
-        pages.send_keys_to_placeholder_email(stellar_burgers_api)
-        pages.send_keys_to_placeholder_password(stellar_burgers_api)
-        pages.click_enter_button()
         pages.add_filling_to_order()
         pages.click_order_button()
         details_text = pages.get_order_text()
         assert details_text == "Ваш заказ начали готовить"
-        response = stellar_burgers_api.delete_user(access_token)
-        assert response.status_code == 202, "Пользователь не удален"

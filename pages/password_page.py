@@ -1,6 +1,5 @@
 from locators.locators import StellarBurgersLocators as Locators
 from pages.base_page import StellarBurgerBasePage
-from data import StellarBurgersLogin as Login
 import allure
 
 
