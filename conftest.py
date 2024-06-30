@@ -42,6 +42,6 @@ def enter_and_delete_user(driver):
     pages.send_keys_to_placeholder_email(stellar_burgers_api)
     pages.send_keys_to_placeholder_password(stellar_burgers_api)
     pages.click_enter_button()
-    yield access_token
+    yield
     response = stellar_burgers_api.delete_user(access_token)
     assert response.status_code == 202, "Пользователь не удален"
