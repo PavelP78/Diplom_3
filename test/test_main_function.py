@@ -22,7 +22,7 @@ class TestStellarBurgersMainFunction:
         pages = StellarBurgersMainFunctionPage(driver)
         pages.click_bun_picture()
         details_text = pages.get_ingredient_text()
-        assert details_text == "Детали ингредиента"
+        assert details_text == "Детали ингредиента", "Окна нет"
 
     @allure.title('Проверка: если кликнуть на ингредиент, появится всплывающее окно с деталями '
                   'которое закрывается кликом по крестику')
@@ -30,7 +30,7 @@ class TestStellarBurgersMainFunction:
         pages = StellarBurgersMainFunctionPage(driver)
         pages.click_bun_picture()
         pages.click_close_pop_up_ingredient_button()
-        assert pages.filling_button_is_active() is True
+        assert pages.filling_button_is_active() is True, " Кнопка начинки не отображается"
 
     @allure.title('Проверка: при добавлении ингредиента в заказ'
                   ' счётчик этого ингридиента увеличивается')
@@ -39,7 +39,7 @@ class TestStellarBurgersMainFunction:
         meter_value = pages.get_meter_value()
         pages.add_filling_to_order()
         actual_value = pages.get_meter_value()
-        assert actual_value > meter_value
+        assert actual_value > meter_value, "Счетчик не работает"
 
     @allure.title('Проверка: залогиненный пользователь может оформить заказ')
     def test_make_order_authorized_user(self, enter_and_delete_user, driver):
@@ -47,4 +47,4 @@ class TestStellarBurgersMainFunction:
         pages.add_filling_to_order()
         pages.click_order_button()
         details_text = pages.get_order_text()
-        assert details_text == "Ваш заказ начали готовить"
+        assert details_text == "Ваш заказ начали готовить", "Заказ не готовят"
