@@ -5,6 +5,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from data import StellarBurgersUrl as Url
 from api_page import StellarBurgersAPI
 from pages.login_page import StellarBurgersLoginPage
+from pages.main_function_page import StellarBurgersMainFunctionPage
 
 
 def get_driver(name):
@@ -28,6 +29,11 @@ def driver(request):
     driver.delete_all_cookies()
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def pages(driver):
+    return StellarBurgersMainFunctionPage(driver)
 
 
 @pytest.fixture

@@ -13,7 +13,7 @@ class StellarBurgersLocators:
     ENTER_BUTTON_PASSWORD_RECOVERY_FORM = (By.XPATH, '//a[text()="Войти"]')  # Кнопка войтив форме восстановления пароля
     REGISTRATION_BUTTON = (By.XPATH, '//a[text()="Зарегистрироваться"]')  # Кнопка зарегистрироваться
     DESIGNER_BUTTON = (By.XPATH, '//p[text()="Конструктор"]')  # Кнопка конструктор
-    LOGO_BUTTON = (By.XPATH, '//div[@class="AppHeader_header__logo__2D0X2"]')  # Логотип Stellar Burgers
+    LOGO_BUTTON = (By.XPATH, '//div[contains(@class,"header__logo")]')  # Логотип Stellar Burgers
     EXIT_BUTTON = (By.XPATH, '//button[text()="Выход"]')  # Кнопка «Выход» в личном кабинете
     ROLLS_BUTTON = (By.XPATH, '//span[text()="Булки"]')  # Кнопка «Булки»
     SOUCE_BUTTON = (By.XPATH, '//span[text()="Соусы"]')  # Кнопка «Соусы»
@@ -45,9 +45,19 @@ class StellarBurgersLocators:
     ORDER_USER_NUMBER_SECOND_IN_FEED = (By.XPATH, '(//p[contains(@class, "text text_type_digits-default")])[3]')  # Номер заказа(второй в списке) пользователя в разделе Лента заказов
     ORDER_USER_NUMBER_LAST_IN_ORDER_HISTORY = (By.XPATH, '(//p[contains(@class, "text text_type_digits-default")])[last()- 1]')  # Номер заказа(последний в списке) пользователя в разделе История заказов
     ORDER_USER_NUMBER_SECOND_IN_ORDER_HISTORY = (By.XPATH, '(//p[contains(@class, "text text_type_digits-default")])[3]')  # Номер заказа(второй в списке) пользователя в разделе История заказов
-    ORDER_METER_ALL_TIME = (By.XPATH, '(//p[contains(@class, "OrderFeed_number__2MbrQ")])[1]')  # Счетчик заказов - выполненно за все время
-    ORDER_METER_TODAY = (By.XPATH, '(//p[contains(@class, "OrderFeed_number__2MbrQ")])[2]')  # Счетчик заказов - выполненно за сегодня
+
+   # ORDER_METER_ALL_TIME = (By.XPATH, '(//p[contains(@class, "OrderFeed_number__2MbrQ")])[1]')  # Счетчик заказов - выполненно за все время
+    ORDER_METER_ALL_TIME = (By.XPATH, '//p[text()="Выполнено за все время:"]/following-sibling::p')  # Счетчик заказов - выполненно за все время
+
+
+    # ORDER_METER_TODAY = (By.XPATH, '(//p[contains(@class, "OrderFeed_number__2MbrQ")])[2]')  # Счетчик заказов - выполненно за сегодня
+    ORDER_METER_TODAY = (By.XPATH, '//p[text()="Выполнено за сегодня:"]/following-sibling::p')  # Счетчик заказов - выполненно за сегодня
+
+
     ORDER_READY_NUMBER_FIRST = (By.XPATH, '(//li[contains(@class, "text text_type_digits-default")])[1]')  # Номер готового заказа(первый в списке)
     ORDER_READY_NUMBER_SECOND = (By.XPATH, '(//li[contains(@class, "text text_type_digits-default")])[2]')  # Номер готового заказа(второй в списке)
     ORDER_IN_PROGRESS = (By.XPATH, '(//li[contains(@class, "text text_type_digits-default mb-2")])[6][1]')  # Номер заказа в работе(первый в списке)
-    CLOSE_POP_UP_ORDER_BUTTON = (By.XPATH, '//button[@class="Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK"]')  # Кнопка закрыть - всплывающее окно созданного заказа
+
+
+    # CLOSE_POP_UP_ORDER_BUTTON = (By.XPATH, '//button[@class="Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK"]')  # Кнопка закрыть - всплывающее окно созданного заказа
+    CLOSE_POP_UP_ORDER_BUTTON = (By.XPATH, '//section[contains(@class, "Modal_modal_opened")]//button[contains(@class, "close")]')  # Кнопка закрыть - всплывающее окно созданного заказа

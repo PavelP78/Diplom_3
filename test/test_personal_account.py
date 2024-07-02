@@ -6,8 +6,7 @@ from pages.personal_account_page import StellarBurgersPersonalAccountPage
 class TestStellarBurgersPersonalAccount:
 
     @allure.title('Проверка: переход по клику на «Личный кабинет»')
-    def test_personal_account_button_click(self, driver):
-        pages = StellarBurgersPersonalAccountPage(driver)
+    def test_personal_account_button_click(self, driver, pages):
         pages.click_main_enter_button()
         assert driver.current_url == f'{Url.URL_LOGIN}', "Url is wrong"
 

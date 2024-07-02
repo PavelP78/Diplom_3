@@ -1,8 +1,8 @@
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
+from seletools.actions import drag_and_drop
 
 
 class StellarBurgerBasePage:
@@ -15,25 +15,25 @@ class StellarBurgerBasePage:
         WebDriverWait(self.driver, 10).until(EC.visibility_of(element_to_click))
         element_to_click.click()
 
-    def find_element(self, locator):
-        return WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
+    def find_element(self, locator, timeout=10):
+        return WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
 
-    def click_to_element(self, locator):
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
-        WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(locator))
+    def click_to_element(self, locator, timeout=10):
+        WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
+        WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
         self.find_element(locator).click()
 
     def get_text(self, locator):
         return self.find_element(locator).text
 
-    def get_actually_text(self, locator):
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(locator))
-            WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
+    def get_actually_text(self, locator, timeout=10):
+            WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
+            WebDriverWait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
             actually_text = self.driver.find_element(*locator).text
             return actually_text
 
-    def set_text(self, locator, text):
-        WebDriverWait(self.driver, 3).until(expected_conditions.element_to_be_clickable(locator))
+    def set_text(self, locator, text, timeout=10):
+        WebDriverWait(self.driver, timeout).until(expected_conditions.element_to_be_clickable(locator))
         self.driver.find_element(*locator).send_keys(text)
 
     def tab_switch(self):
@@ -72,8 +72,7 @@ class StellarBurgerBasePage:
         except NoSuchElementException:
             return False
 
-    def drag_and_drop_element(self, locator_1, locator_2):
-        drag = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(locator_1))
-        drop = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(locator_2))
-        action_chains = ActionChains(self.driver)
-        action_chains.drag_and_drop(drag, drop).perform()
+    def drag_and_drop_element(self, locator_1, locator_2, timeout=20):
+        drag = WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator_1))
+        drop = WebDriverWait(self.driver, timeout).until(EC.visibility_of_element_located(locator_2))
+        drag_and_drop(self.driver, drag, drop)

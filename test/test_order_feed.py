@@ -4,8 +4,7 @@ from pages.order_feed_page import StellarBurgersOrderFeedPage
 
 class TestStellarBurgersOrderFeed:
     @allure.title('Проверка: если кликнуть на заказ, откроется всплывающее окно с деталями')
-    def test_make_order_authorized_user(self, enter_and_delete_user, driver):
-        pages = StellarBurgersOrderFeedPage(driver)
+    def test_make_order_authorized_user(self, enter_and_delete_user, driver, pages):
         pages.add_filling_to_order()
         pages.click_order_button()
         details_text = pages.get_order_text()
